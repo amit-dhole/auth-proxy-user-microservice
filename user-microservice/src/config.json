@@ -1,0 +1,15 @@
+{
+    "listenurl" : ":8083",
+    "httpprotocol" : "http",
+    "username" : "root",
+    "profile" : {
+        "username" : "root",
+        "dob" : "30-nov-2015",
+        "age" : "5",
+        "email" : "dd@dd.com",
+        "phone-number" : "9912345678"
+    },
+    "certificateFile" : "cert.pem",
+    "certificateKeyFile" : "key.pem",
+    "authentication" : true
+}

@@ -1,0 +1,8 @@
+{
+    "listenurl" : ":8081",
+    "httpprotocol" : "http",
+    "username" : "root",
+    "certificateFile" : "cert.pem",
+    "certificateKeyFile" : "key.pem",
+    "authentication" : true
+}
