@@ -6,7 +6,8 @@ import (
 	"io/ioutil"
 	"log"
 
-	"github.com/pkg/errors"
+	"errors"
+
 	"gopkg.in/go-playground/validator.v9"
 )
 
@@ -23,10 +24,10 @@ var (
 // Configuration options
 // nolint: lll
 type Configuration struct {
-	ListenURL          string `json:"listenurl"`
-	URLPrefix          string `json:"urlprefix"`
+	ListenURL          string `json:"listenURL"`
+	URLPrefix          string `json:"urlPrefix"`
 	HTTPProtocol       string `json:"httpProtocol"`
-	Username           string `json:"username"`
+	User               string `json:"user"`
 	Password           string `json:"password"`
 	CertificateFile    string `json:"certificateFile"`
 	CertificateKeyFile string `json:"certificateKeyFile"`
@@ -45,11 +46,11 @@ func Load() (err error) {
 		err = readConfigFromJSON(filePath)
 
 		if err != nil {
-			return errors.Wrap(err, "config initialization failed")
+			return errors.New("config initialization failed - %v " + err.Error())
 		}
 
 		if err = validate(&Config); err != nil {
-			return errors.Wrap(err, "config validation failed")
+			return errors.New("config validation failed" + err.Error())
 		}
 	}
 	return
@@ -64,18 +65,17 @@ func readConfigFromJSON(configFilePath string) error {
 		reader := bytes.NewBuffer(contents)
 		err = json.NewDecoder(reader).Decode(&Config)
 	}
+
 	if err != nil {
 		log.Printf("Reading configuration from JSON (%s) failed: %s\n", configFilePath, err)
-	} else {
-		log.Printf("Configuration has been read from JSON (%s) successfully\n", configFilePath)
+		return errors.New("Reading configuration from JSON failed: " + err.Error())
 	}
-
-	return err
+	log.Printf("Configuration has been read from JSON (%s) successfully\n", configFilePath)
+	return nil
 }
 
 // validate validates a struct and nested fields
 func validate(c *Configuration) error {
 	v := validator.New()
-
 	return v.Struct(c)
 }

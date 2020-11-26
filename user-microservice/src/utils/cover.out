@@ -1,0 +1,7 @@
+mode: count
+github.com/auth-user-proxy-microservice/user-microservice/src/utils/utils.go:8.69,12.20 4 0
+github.com/auth-user-proxy-microservice/user-microservice/src/utils/utils.go:15.2,15.8 1 0
+github.com/auth-user-proxy-microservice/user-microservice/src/utils/utils.go:12.20,14.3 1 0
+github.com/auth-user-proxy-microservice/user-microservice/src/utils/utils.go:19.37,21.8 2 1
+github.com/auth-user-proxy-microservice/user-microservice/src/utils/utils.go:24.2,24.11 1 0
+github.com/auth-user-proxy-microservice/user-microservice/src/utils/utils.go:21.8,23.3 1 1

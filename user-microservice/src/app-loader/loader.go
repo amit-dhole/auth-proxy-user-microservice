@@ -5,7 +5,7 @@ import (
 	"log"
 	"sync"
 
-	"github.com/auth-user-proxy-service/user-microservice/src/config"
+	"github.com/auth-user-proxy-microservice/user-microservice/src/config"
 )
 
 // AppLoader defines the whole configuration of the Application.

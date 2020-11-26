@@ -1,0 +1,14 @@
+mode: count
+github.com/auth-user-proxy-microservice/auth-microservice/src/config/config.go:38.31,40.2 1 1
+github.com/auth-user-proxy-microservice/auth-microservice/src/config/config.go:43.25,45.24 1 1
+github.com/auth-user-proxy-microservice/auth-microservice/src/config/config.go:56.2,56.8 1 1
+github.com/auth-user-proxy-microservice/auth-microservice/src/config/config.go:45.24,48.17 2 1
+github.com/auth-user-proxy-microservice/auth-microservice/src/config/config.go:52.3,52.42 1 1
+github.com/auth-user-proxy-microservice/auth-microservice/src/config/config.go:48.17,50.4 1 0
+github.com/auth-user-proxy-microservice/auth-microservice/src/config/config.go:52.42,54.4 1 0
+github.com/auth-user-proxy-microservice/auth-microservice/src/config/config.go:60.54,64.16 3 1
+github.com/auth-user-proxy-microservice/auth-microservice/src/config/config.go:69.2,69.16 1 1
+github.com/auth-user-proxy-microservice/auth-microservice/src/config/config.go:73.2,74.12 2 1
+github.com/auth-user-proxy-microservice/auth-microservice/src/config/config.go:64.16,67.3 2 1
+github.com/auth-user-proxy-microservice/auth-microservice/src/config/config.go:69.16,72.3 2 0
+github.com/auth-user-proxy-microservice/auth-microservice/src/config/config.go:78.39,81.2 2 1

@@ -1,11 +1,9 @@
 package apploader
 
 import (
-	"context"
 	"log"
-	"sync"
 
-	"github.com/auth-user-proxy-service/auth-microservice/src/config"
+	"github.com/auth-user-proxy-microservice/auth-microservice/src/config"
 )
 
 // AppLoader defines the whole configuration of the Application.
@@ -19,7 +17,7 @@ var AppLoaderService *AppLoader
 
 // LoadApplicationServices loads all partial configurations of components
 // and populates the AppLoaderService with the configuration data
-func LoadApplicationServices(ctx context.Context, wg *sync.WaitGroup) {
+func LoadApplicationServices() {
 	loadFuncs := []func() error{
 		config.Load,
 	}

@@ -23,10 +23,10 @@ var (
 // Configuration options
 // nolint: lll
 type Configuration struct {
-	ListenURL          string  `json:"listenurl"`
+	ListenURL          string  `json:"listenURL"`
 	URLPrefix          string  `json:"urlprefix"`
 	HTTPProtocol       string  `json:"httpProtocol"`
-	Username           string  `json:"username"`
+	User               string  `json:"user"`
 	Password           string  `json:"password"`
 	CertificateFile    string  `json:"certificateFile"`
 	CertificateKeyFile string  `json:"certificateKeyFile"`
@@ -37,7 +37,7 @@ type Configuration struct {
 // Profile options
 // nolint: lll
 type Profile struct {
-	Username    string `json:"username"`
+	Username    string `json:"name"`
 	DOB         string `json:"dob"`
 	Age         string `json:"age"`
 	Email       string `json:"email"`

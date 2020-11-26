@@ -1,9 +1,9 @@
 {
-    "listenurl" : ":8083",
-    "httpprotocol" : "http",
-    "username" : "root",
+    "listenURL" : ":8081",
+    "httpProtocol" : "http",
+    "user" : "root",
     "profile" : {
-        "username" : "root",
+        "name" : "root",
         "dob" : "30-nov-2015",
         "age" : "5",
         "email" : "dd@dd.com",

@@ -1,7 +1,7 @@
 {
-    "listenurl" : ":8080",
-    "httpprotocol" : "http",
-    "username" : "root",
+    "listenURL" : ":8081",
+    "httpProtocol" : "http",
+    "user" : "root",
     "certificateFile" : "cert.pem",
     "certificateKeyFile" : "key.pem",
     "authentication" : true

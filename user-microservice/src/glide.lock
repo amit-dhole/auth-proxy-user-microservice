@@ -1,0 +1,38 @@
+hash: bdf5c0b43903ad8f1246f2cdfe547d87d5dcc3a4055c326109e5a2a40514e3e3
+updated: 2020-11-26T23:56:06.14812946+05:30
+imports:
+- name: github.com/go-playground/locales
+  version: ac5643571b2e4508ec50f9a132b5a683412b5bbe
+  subpackages:
+  - currency
+- name: github.com/go-playground/universal-translator
+  version: f87b1403479a348651dbf5f07f5cc6e5fcf07008
+- name: github.com/golang/mock
+  version: 99aa9272d551d0d16f4bdcc43dc06a3077e69b3a
+  subpackages:
+  - gomock
+- name: github.com/gorilla/context
+  version: 51ce91d2eaddeca0ef29a71d766bb3634dadf729
+- name: github.com/gorilla/mux
+  version: e3702bed27f0d39777b0b37b664b6280e8ef8fbf
+- name: github.com/leodido/go-urn
+  version: a0f5013415294bb94553821ace21a1a74c0298cc
+- name: github.com/urfave/negroni
+  version: 5dbbc83f748fc3ad38585842b0aedab546d0ea1e
+- name: gopkg.in/go-playground/validator.v9
+  version: 21c910fc6d9c3556c28252b04beb17de0c2d40ec
+testImports:
+- name: github.com/davecgh/go-spew
+  version: d8f796af33cc11cb798c1aaeb27a4ebc5099927d
+  subpackages:
+  - spew
+- name: github.com/pmezard/go-difflib
+  version: 5d4384ee4fb2527b0a1256a821ebfc92f91efefc
+  subpackages:
+  - difflib
+- name: github.com/stretchr/testify
+  version: f654a9112bbeac49ca2cd45bfbe11533c4666cf8
+  subpackages:
+  - assert
+- name: gopkg.in/yaml.v3
+  version: eeeca48fe7764f320e4870d231902bf9c1be2c08

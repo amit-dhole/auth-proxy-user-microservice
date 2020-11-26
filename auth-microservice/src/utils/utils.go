@@ -12,7 +12,6 @@ func GenerateResponse(data []byte, code int, w http.ResponseWriter) {
 	if errJSON != nil {
 		return
 	}
-	return
 }
 
 //ToString converts an interface type to string

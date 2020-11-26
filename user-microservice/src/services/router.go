@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/auth-user-proxy-service/user-microservice/src/config"
-	"github.com/auth-user-proxy-service/user-microservice/src/model"
-	"github.com/auth-user-proxy-service/user-microservice/src/utils"
+	"github.com/auth-user-proxy-microservice/user-microservice/src/config"
+	"github.com/auth-user-proxy-microservice/user-microservice/src/model"
+	"github.com/auth-user-proxy-microservice/user-microservice/src/utils"
 	"github.com/gorilla/mux"
 )
 
@@ -19,7 +19,7 @@ func NewRouter() *mux.Router {
 	return router
 }
 
-// UserProfileHandler used for returning version of service
+// UserProfileHandler used for returning user profile
 func UserProfileHandler(w http.ResponseWriter, r *http.Request) {
 	defer func() {
 		err := recover()
@@ -30,18 +30,19 @@ func UserProfileHandler(w http.ResponseWriter, r *http.Request) {
 	}()
 
 	userName := r.Header.Get("user")
-	if userName == config.Config.Username {
+	if userName == config.Config.User {
 		profile := config.Config.Profile
-		jsonByte, err := json.Marshal(profile)
+		jsonByte, err := json.MarshalIndent(profile, " ", " ")
 		if err != nil {
 			http.Error(w, model.Servererrstr, http.StatusInternalServerError)
+			return
 		}
 		utils.GenerateResponse(jsonByte, http.StatusOK, w)
 	}
 	return
 }
 
-// ServiceNameHandler used for returning version of service
+// ServiceNameHandler used for returning name of service
 func ServiceNameHandler(w http.ResponseWriter, _ *http.Request) {
 	defer func() {
 		err := recover()
@@ -51,9 +52,10 @@ func ServiceNameHandler(w http.ResponseWriter, _ *http.Request) {
 		}
 	}()
 
-	jsonByte, err := json.Marshal("user-miscroservice")
+	jsonByte, err := json.MarshalIndent("user-miscroservice", " ", " ")
 	if err != nil {
 		http.Error(w, model.Servererrstr, http.StatusInternalServerError)
+		return
 	}
 	utils.GenerateResponse(jsonByte, http.StatusOK, w)
 	return

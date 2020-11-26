@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/auth-user-proxy-service/auth-microservice/src/config"
-	"github.com/auth-user-proxy-service/auth-microservice/src/utils"
+	"github.com/auth-user-proxy-microservice/auth-microservice/src/config"
+	"github.com/auth-user-proxy-microservice/auth-microservice/src/utils"
 	"github.com/gorilla/mux"
 )
 
@@ -18,16 +18,16 @@ func NewRouter() *mux.Router {
 	return router
 }
 
-// AuthHandler used for returning version of service
+// AuthHandler used for returning authendication of user
 func AuthHandler(w http.ResponseWriter, r *http.Request) {
 
-	// defer func() {
-	// 	err := recover()
-	// 	if err != nil {
-	// 		http.Error(w, utils.ToString(err), http.StatusInternalServerError)
-	// 		return
-	// 	}
-	// }()
+	defer func() {
+		err := recover()
+		if err != nil {
+			http.Error(w, utils.ToString(err), http.StatusInternalServerError)
+			return
+		}
+	}()
 
 	if config.Config.Authentication {
 		authHeader := r.Header.Get("Proxy-Authorization")
@@ -38,7 +38,7 @@ func AuthHandler(w http.ResponseWriter, r *http.Request) {
 				if err == nil {
 					decodedCredentials := string(credentials)
 					userName := decodedCredentials
-					if userName == config.Config.Username {
+					if userName == config.Config.User {
 						utils.GenerateResponse(nil, http.StatusOK, w)
 						return
 					}
@@ -46,6 +46,7 @@ func AuthHandler(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 		utils.GenerateResponse(nil, http.StatusUnauthorized, w)
+		return
 	}
 	utils.GenerateResponse(nil, http.StatusOK, w)
 }

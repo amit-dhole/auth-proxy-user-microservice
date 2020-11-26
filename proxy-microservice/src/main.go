@@ -9,10 +9,10 @@ import (
 	"net/http"
 	"sync"
 
-	apploader "github.com/auth-user-proxy-service/proxy-microservice/src/app-loader"
-	"github.com/auth-user-proxy-service/proxy-microservice/src/config"
-	"github.com/auth-user-proxy-service/proxy-microservice/src/model"
-	"github.com/auth-user-proxy-service/proxy-microservice/src/services"
+	apploader "github.com/auth-user-proxy-microservice/proxy-microservice/src/app-loader"
+	"github.com/auth-user-proxy-microservice/proxy-microservice/src/config"
+	"github.com/auth-user-proxy-microservice/proxy-microservice/src/model"
+	"github.com/auth-user-proxy-microservice/proxy-microservice/src/services"
 	"github.com/urfave/negroni"
 )
 
