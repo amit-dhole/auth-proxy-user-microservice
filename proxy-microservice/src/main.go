@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"sync"
+	"time"
 
 	apploader "github.com/auth-user-proxy-microservice/proxy-microservice/src/app-loader"
 	"github.com/auth-user-proxy-microservice/proxy-microservice/src/config"
@@ -25,15 +25,8 @@ func main() {
 		config.SetFilePath(*configFile)
 	}
 
-	wg := &sync.WaitGroup{}
-	ctx, cancel := context.WithCancel(context.Background())
-	defer func() {
-		cancel()
-		wg.Wait()
-	}()
-
 	// initializing global Application Service
-	apploader.LoadApplicationServices(ctx, wg)
+	apploader.LoadApplicationServices()
 
 	middlewareManager := negroni.New()
 	middlewareManager.Use(negroni.NewRecovery())
@@ -55,6 +48,8 @@ func main() {
 	}
 
 	if err != nil {
+		ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
+		defer cancel()
 		e := server.Shutdown(ctx)
 		log.Fatalf("Stop running application: %v, shutdown: %v", err, e)
 	}

@@ -1,3 +1,11 @@
+cover-all.out
+cover.out
+cover-cobertura.xml
 vendor
+bin
+static-analysis.xml
+src/static-analysis.log
+src/test
+.vscode
 src
-*.xml
+*.out

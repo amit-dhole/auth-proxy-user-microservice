@@ -38,7 +38,9 @@ func UserProfileHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		utils.GenerateResponse(jsonByte, http.StatusOK, w)
+		return
 	}
+	utils.GenerateResponse(nil, http.StatusOK, w)
 	return
 }
 
@@ -51,8 +53,8 @@ func ServiceNameHandler(w http.ResponseWriter, _ *http.Request) {
 			return
 		}
 	}()
-
-	jsonByte, err := json.MarshalIndent("user-miscroservice", " ", " ")
+	serviceName := map[string]interface{}{"name": "user-miscroservice"}
+	jsonByte, err := json.MarshalIndent(serviceName, " ", " ")
 	if err != nil {
 		http.Error(w, model.Servererrstr, http.StatusInternalServerError)
 		return

@@ -12,7 +12,7 @@ packages = \
 test:
 	@$(foreach package,$(packages), \
 		set -e; \
-		go test -coverprofile $(package)/cover.out -covermode=count $(package);)
+		go test -race -coverprofile $(package)/cover.out -covermode=atomic $(package);)
 
 cover:
 	echo "mode: count" > cover-all.out
@@ -41,4 +41,6 @@ dependencies:
 	glide install
 	go get -u github.com/jteeuwen/go-bindata/...
 
-
+show:
+	echo "Launching web browser to show overall coverage..."
+	go tool cover -html=cover-all.out

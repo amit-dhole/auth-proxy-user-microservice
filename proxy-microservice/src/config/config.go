@@ -44,6 +44,12 @@ type Profile struct {
 	PhoneNumber string `json:"phone-number"`
 }
 
+// Service options
+// nolint: lll
+type Service struct {
+	ServiceName string `json:"service"`
+}
+
 // SetFilePath set configuration file path
 func SetFilePath(path string) {
 	filePath = path

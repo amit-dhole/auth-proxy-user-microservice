@@ -1,5 +1,5 @@
 {
-    "listenURL" : ":8081",
+    "listenURL" : ":8080",
     "httpProtocol" : "http",
     "user" : "root",
     "certificateFile" : "cert.pem",

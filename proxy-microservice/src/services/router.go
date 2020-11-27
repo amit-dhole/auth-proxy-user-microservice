@@ -86,16 +86,26 @@ func HomeHandler(w http.ResponseWriter, _ *http.Request) {
 	}
 
 	if resp.StatusCode == http.StatusOK {
-		data, _ := checkUserProfile(w, auth)
+		data, err := checkUserProfile(w, auth)
+		if err != nil {
+			http.Error(w, model.Servererrstr, http.StatusInternalServerError)
+			return
+		}
+
 		jsonByte, err := json.MarshalIndent(data, " ", " ")
 		if err != nil {
 			http.Error(w, model.Servererrstr, http.StatusInternalServerError)
 			return
 		}
 		utils.GenerateResponse(jsonByte, http.StatusOK, w)
+		return
 	}
 
-	data, _ := checkMicroserviceName(w)
+	data, err := checkMicroserviceName(w)
+	if err != nil {
+		http.Error(w, model.Servererrstr, http.StatusInternalServerError)
+		return
+	}
 	jsonByte, err := json.MarshalIndent(data, " ", " ")
 	if err != nil {
 		http.Error(w, model.Servererrstr, http.StatusInternalServerError)
@@ -139,17 +149,18 @@ func checkUserProfile(w http.ResponseWriter, username string) (config.Profile, e
 	return profile, nil
 }
 
-func checkMicroserviceName(w http.ResponseWriter) (string, error) {
+func checkMicroserviceName(w http.ResponseWriter) (config.Service, error) {
+	service := config.Service{}
 	URL := "http://localhost:8083/microservice/name"
 	req, err := http.NewRequest(http.MethodGet, URL, nil)
 	if err != nil {
-		return "", errors.New(fmt.Sprintf("ErrHTTPGet, Error in newrequest : %v , Error : ", req) + err.Error())
+		return service, errors.New(fmt.Sprintf("ErrHTTPGet, Error in newrequest : %v , Error : ", req) + err.Error())
 	}
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		return "", errors.New(fmt.Sprintf("ErrHTTPGet, Failed to get response in newrequest : %v , Error : ", req) + err.Error())
+		return service, errors.New(fmt.Sprintf("ErrHTTPGet, Failed to get response in newrequest : %v , Error : ", req) + err.Error())
 	}
 	if resp.StatusCode == http.StatusOK {
 		defer func() {
@@ -158,14 +169,14 @@ func checkMicroserviceName(w http.ResponseWriter) (string, error) {
 
 		body, err := ioutil.ReadAll(resp.Body)
 		if err != nil {
-			return "", err
+			return service, err
 		}
-		var data string
-		err = json.Unmarshal(body, &data)
+
+		err = json.Unmarshal(body, &service)
 		if err != nil {
-			return "", err
+			return service, err
 		}
-		return string(data), nil
+		return service, nil
 	}
-	return "", nil
+	return service, nil
 }
