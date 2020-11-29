@@ -39,8 +39,7 @@ local:
 dependencies:
 	echo "Installing dependencies"
 	glide install
-	go get -u github.com/jteeuwen/go-bindata/...
-
+	
 show:
 	echo "Launching web browser to show overall coverage..."
 	go tool cover -html=cover-all.out
